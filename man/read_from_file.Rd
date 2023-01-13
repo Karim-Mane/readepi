@@ -15,7 +15,7 @@ read_from_file(
 \arguments{
 \item{file.path}{the path to the file to be read. When several files need to be imported from a directory, this should be the path to that directory}
 
-\item{sep}{the separator between the columns in the file. This is only required for space-separated files.}
+\item{sep}{the separator between the columns in the file. This is only required for space-separated files}
 
 \item{format}{a string used to specify the file format. This is useful when a file does not have an extension, or has a file extension that does not match its actual type}
 
@@ -31,5 +31,4 @@ function to read data from all supported file types in the \code{rio} package.
 }
 \examples{
 data = read_from_file(file.path = "/path/to/test.txt", sep=NULL, format=NULL, which=NULL, pattern=NULL)
-
 }

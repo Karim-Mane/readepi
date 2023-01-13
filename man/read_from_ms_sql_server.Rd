@@ -46,5 +46,4 @@ function to read data from relational databases hosted by online MS SQL server. 
 }
 \examples{
 data = read_from_relationalDB(user="kmane", password="****", host="robin.mrc.gm", port=1433, database.name="mrcg_db", table.name="test", driver.name="ODBC Driver 17 for SQL Server")
-
 }

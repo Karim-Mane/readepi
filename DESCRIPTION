@@ -22,5 +22,8 @@ Suggests:
     data.table,
     tidyverse,
     REDCapR,
-    rio
+    rio,
+    knitr,
+    rmarkdown
 Config/testthat/edition: 3
+VignetteBuilder: knitr

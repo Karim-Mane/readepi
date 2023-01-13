@@ -33,7 +33,7 @@ You can install the development version of readepi from
 
 ```{r}
 # install.packages("devtools")
-#devtools::install_github("epiverse-trace/readepi")
+#devtools::install_github("Karim-Mane/readepi")
 library(readepi)
 ```
 

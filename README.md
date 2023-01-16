@@ -24,54 +24,7 @@ You can install the development version of readepi from
 ``` r
 # install.packages("devtools")
 #devtools::install_github("Karim-Mane/readepi")
-library(readepi)
-#> Loading required package: odbc
-#> Loading required package: DBI
-#> Loading required package: R.utils
-#> Loading required package: R.oo
-#> Loading required package: R.methodsS3
-#> R.methodsS3 v1.8.2 (2022-06-13 22:00:14 UTC) successfully loaded. See ?R.methodsS3 for help.
-#> R.oo v1.25.0 (2022-06-12 02:20:02 UTC) successfully loaded. See ?R.oo for help.
-#> 
-#> Attaching package: 'R.oo'
-#> The following object is masked from 'package:R.methodsS3':
-#> 
-#>     throw
-#> The following objects are masked from 'package:methods':
-#> 
-#>     getClasses, getMethods
-#> The following objects are masked from 'package:base':
-#> 
-#>     attach, detach, load, save
-#> R.utils v2.12.2 (2022-11-11 22:00:03 UTC) successfully loaded. See ?R.utils for help.
-#> 
-#> Attaching package: 'R.utils'
-#> The following object is masked from 'package:utils':
-#> 
-#>     timestamp
-#> The following objects are masked from 'package:base':
-#> 
-#>     cat, commandArgs, getOption, isOpen, nullfile, parse, warnings
-#> Loading required package: writexl
-#> Loading required package: readr
-#> Loading required package: data.table
-#> Loading required package: tidyverse
-#> ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
-#> ✔ ggplot2 3.4.0      ✔ dplyr   1.0.10
-#> ✔ tibble  3.1.8      ✔ stringr 1.5.0 
-#> ✔ tidyr   1.2.1      ✔ forcats 0.5.2 
-#> ✔ purrr   1.0.1      
-#> ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-#> ✖ dplyr::between()   masks data.table::between()
-#> ✖ tidyr::extract()   masks R.utils::extract()
-#> ✖ dplyr::filter()    masks stats::filter()
-#> ✖ dplyr::first()     masks data.table::first()
-#> ✖ dplyr::lag()       masks stats::lag()
-#> ✖ dplyr::last()      masks data.table::last()
-#> ✖ purrr::transpose() masks data.table::transpose()
-#> Loading required package: REDCapR
-#> 
-#> Loading required package: rio
+suppressPackageStartupMessages(library(readepi))
 ```
 
 # Reading data from file or directory
@@ -158,35 +111,36 @@ The **read_epi()** function can read data from the above RDBMS. It
 expects the following arguments:  
 `credentials.file`: the path to the file with the user-specific
 credential details for the projects of interest. This is a tab-delimited
-file with the following columns:  
-\* user_name: the user name,  
-\* password: the user password (for REDCap, this corresponds to the
-**token** that serves as password to the project),  
-\* host_name: the host name (for HDSS and EMRS) or the URI (for
-REDCap),  
-\* project_id: the project ID (for REDCap) or the name of the database
-(for HDSS and EMRS) you are access to,  
-\* comment: a summary description about the project or database of
-interest,  
-\* dbms: the name of the DBMS: ‘redcap’ or ‘REDCap’ when reading from
-REDCap, ‘sqlserver’ or ‘SQLServer’ when reading from MS SQL Server,  
-\* port: the port ID (used for MS SQL Servers only).  
-`project.id` for relational DB, this is the name of the database that
-contains the table from which the data should be pulled. Otherwise, it
-is the project ID you were given access to. Note that this should be
-similar to the value of the **project_id** field in the credential
-file.  
-`driver.name` the name of the MS driver (only for HDSS and EMRS). use
-`odbc::odbcListDrivers()` to display the list of installed drivers,  
-`table.name`: the name of the target table (only for HDSS and EMRS),  
-`records`: a vector or a comma-separated string of a subset of subject
-IDs. When specified, only the records that correspond to these subjects
-will be imported,  
-`fields`: a vector or a comma-separated string of column names. If
-provided, only those columns will be imported,  
-`id.position`: the column position of the variable that unique
-identifies the subjects. This should only be specified when the column
-with the subject IDs is not the first column. default is 1.
+file with the following columns:
+
+- user_name: the user name,  
+- password: the user password (for REDCap, this corresponds to the
+  **token** that serves as password to the project),  
+- host_name: the host name (for HDSS and EMRS) or the URI (for
+  REDCap),  
+- project_id: the project ID (for REDCap) or the name of the database
+  (for HDSS and EMRS) you are access to,  
+- comment: a summary description about the project or database of
+  interest,  
+- dbms: the name of the DBMS: ‘redcap’ or ‘REDCap’ when reading from
+  REDCap, ‘sqlserver’ or ‘SQLServer’ when reading from MS SQL Server,  
+- port: the port ID (used for MS SQL Servers only).  
+  `project.id` for relational DB, this is the name of the database that
+  contains the table from which the data should be pulled. Otherwise, it
+  is the project ID you were given access to. Note that this should be
+  similar to the value of the **project_id** field in the credential
+  file.  
+  `driver.name` the name of the MS driver (only for HDSS and EMRS). use
+  `odbc::odbcListDrivers()` to display the list of installed drivers,  
+  `table.name`: the name of the target table (only for HDSS and EMRS),  
+  `records`: a vector or a comma-separated string of a subset of subject
+  IDs. When specified, only the records that correspond to these
+  subjects will be imported,  
+  `fields`: a vector or a comma-separated string of column names. If
+  provided, only those columns will be imported,  
+  `id.position`: the column position of the variable that unique
+  identifies the subjects. This should only be specified when the column
+  with the subject IDs is not the first column. default is 1.
 
 The function returns a list with 2 data frames (data and metadata) when
 reading from REDCap. A data frame otherwise.
@@ -252,6 +206,7 @@ requests](https://github.com/epiverse-trace/readepi/pulls).
 
 Contributors to the project include:
 
+- Karim Mané (author)
 - Thibaut Jombart (author)
 
 ### Code of Conduct

@@ -22,7 +22,7 @@ You can install the development version of readepi from
 ```{r}
 # install.packages("devtools")
 devtools::install_github("Karim-Mane/readepi")
-library(readepi)
+suppressPackageStartupMessages(library(readepi))
 ```
 
 # Reading data from file or directory
@@ -52,11 +52,12 @@ data = readepi(file.path = dir.path, pattern = "txt")
 # Reading data from relational database management systems (RDBMS): HDSS, EMRS, REDCap
 ## importing data from RDBMS into R
 ### importing from REDCap
+The user must have read access to the system where the data will be read from. The user credential must be stored in a tab-delimited file that is only accessible to him/her. To see the structure of the credential file, use the `show_example_file()` function.    
 we were given access to the **Pats__Covid_19_Cohort_1_Screening**.    
 ```{r eval=FALSE}
 # credentials.file = "/Users/karimmane/Documents/Karim/LSHTM/Data/.credentials_karim.ini"
 # display the structure of the credentials file
-show_example_file()
+# show_example_file()
 
 # reading all fields and records the project
 data = readepi(credentials.file, project.id="Pats__Covid_19_Cohort_1_Screening")

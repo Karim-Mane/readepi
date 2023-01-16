@@ -34,7 +34,7 @@ You can install the development version of readepi from
 ```{r}
 # install.packages("devtools")
 #devtools::install_github("Karim-Mane/readepi")
-library(readepi)
+suppressPackageStartupMessages(library(readepi))
 ```
 
 # Reading data from file or directory
@@ -82,7 +82,8 @@ It is important to view the data that is stored in the MS SQL server. I recommen
 ## importing data from RDBMS into R
 For testing purpose, we were given access to the test server `robin.mrc.gm`. Users should be granted with read access to be able to pull data from the test server.     
 The **read_epi()** function can read data from the above RDBMS. It expects the following arguments:     
-`credentials.file`: the path to the file with the user-specific credential details for the projects of interest. This is a tab-delimited file with the following columns:     
+`credentials.file`: the path to the file with the user-specific credential details for the projects of interest. This is a tab-delimited file with the following columns:    
+
 * user_name: the user name,    
 * password: the user password (for REDCap, this corresponds to the **token** that serves as password to the project),    
 * host_name: the host name (for HDSS and EMRS) or the URI (for REDCap),    
@@ -159,6 +160,7 @@ Contributions are welcome via [pull requests](https://github.com/epiverse-trace/
 
 Contributors to the project include:
 
+* Karim Mané (author)
 * Thibaut Jombart (author)
 
 ### Code of Conduct

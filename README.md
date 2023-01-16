@@ -25,6 +25,53 @@ You can install the development version of readepi from
 # install.packages("devtools")
 #devtools::install_github("Karim-Mane/readepi")
 library(readepi)
+#> Loading required package: odbc
+#> Loading required package: DBI
+#> Loading required package: R.utils
+#> Loading required package: R.oo
+#> Loading required package: R.methodsS3
+#> R.methodsS3 v1.8.2 (2022-06-13 22:00:14 UTC) successfully loaded. See ?R.methodsS3 for help.
+#> R.oo v1.25.0 (2022-06-12 02:20:02 UTC) successfully loaded. See ?R.oo for help.
+#> 
+#> Attaching package: 'R.oo'
+#> The following object is masked from 'package:R.methodsS3':
+#> 
+#>     throw
+#> The following objects are masked from 'package:methods':
+#> 
+#>     getClasses, getMethods
+#> The following objects are masked from 'package:base':
+#> 
+#>     attach, detach, load, save
+#> R.utils v2.12.2 (2022-11-11 22:00:03 UTC) successfully loaded. See ?R.utils for help.
+#> 
+#> Attaching package: 'R.utils'
+#> The following object is masked from 'package:utils':
+#> 
+#>     timestamp
+#> The following objects are masked from 'package:base':
+#> 
+#>     cat, commandArgs, getOption, isOpen, nullfile, parse, warnings
+#> Loading required package: writexl
+#> Loading required package: readr
+#> Loading required package: data.table
+#> Loading required package: tidyverse
+#> ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
+#> ✔ ggplot2 3.4.0      ✔ dplyr   1.0.10
+#> ✔ tibble  3.1.8      ✔ stringr 1.5.0 
+#> ✔ tidyr   1.2.1      ✔ forcats 0.5.2 
+#> ✔ purrr   1.0.1      
+#> ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+#> ✖ dplyr::between()   masks data.table::between()
+#> ✖ tidyr::extract()   masks R.utils::extract()
+#> ✖ dplyr::filter()    masks stats::filter()
+#> ✖ dplyr::first()     masks data.table::first()
+#> ✖ dplyr::lag()       masks stats::lag()
+#> ✖ dplyr::last()      masks data.table::last()
+#> ✖ purrr::transpose() masks data.table::transpose()
+#> Loading required package: REDCapR
+#> 
+#> Loading required package: rio
 ```
 
 # Reading data from file or directory
@@ -55,7 +102,7 @@ list of data frames (if several files were imported from a directory).
 ## importing data from JSON file
 
 ``` r
-file = "/Users/karimmane/Documents/Karim/LSHTM/Data/test.json"
+file = system.file("extdata", "test.json", package = "readepi")
 data = readepi(file.path = file)
 ```
 
@@ -64,7 +111,7 @@ data = readepi(file.path = file)
 here we are importing from the second excel sheet
 
 ``` r
-file = "/Users/karimmane/Documents/Karim/LSHTM/Data/For_correlation.xlsx"
+file = system.file("extdata", "test.xlsx", package = "readepi")
 data = readepi(file.path = file, which = "Sheet2")
 ```
 
@@ -72,7 +119,7 @@ data = readepi(file.path = file, which = "Sheet2")
 
 ``` r
 # reading all files in the given directory
-dir.path = "/Users/karimmane/Documents/Karim/LSHTM/Data"
+dir.path = "inst/extdata"
 data = readepi(file.path = dir.path)
 
 # reading only txt files
@@ -150,7 +197,9 @@ we were given access to the
 \*\*Pats\_\_Covid_19_Cohort_1\_Screening\*\*.
 
 ``` r
-credentials.file = "/Users/karimmane/Documents/Karim/LSHTM/Data/.credentials_karim.ini"
+# display the structure of the credentials file
+show_example_file()
+# credentials.file = system.file("extdata", "test.ini", package = "readepi")
 
 # reading all fields and records the project
 data = readepi(credentials.file, project.id="Pats__Covid_19_Cohort_1_Screening")

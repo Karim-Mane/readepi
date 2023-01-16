@@ -10,10 +10,15 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 Imports:
-    checkmate
+    checkmate,
+    magrittr
 Suggests: 
     covr,
     testthat (>= 3.0.0),
+    knitr,
+    rmarkdown,
+    devtools
+Depends: 
     odbc,
     DBI,
     R.utils,
@@ -22,8 +27,6 @@ Suggests:
     data.table,
     tidyverse,
     REDCapR,
-    rio,
-    knitr,
-    rmarkdown
+    rio
 Config/testthat/edition: 3
 VignetteBuilder: knitr

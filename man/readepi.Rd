@@ -24,9 +24,7 @@ readepi(
 \enumerate{
 \item user_name: the user name
 \item password: the user password (for REDCap, this corresponds to the \strong{token} that serves as password to the project)
-\item host_name: the host name (for relational DB) or the URI (for NoSQL DB such as REDCap)
-\item project_id: the project ID or the name of the database you are access to.
-\item project_id: the project ID or the name of the database you are access to.
+\item host_name: the host name (for MS SQL servers) or the URI (for REDCap)
 \item project_id: the project ID or the name of the database you are access to.
 \item comment: a summary description about the project or database of interest
 \item dbms: the name of the DBMS: 'redcap' or 'REDCap' when reading from REDCap, 'sqlserver' or 'SQLServer' when reading from MS SQLServer
@@ -60,4 +58,7 @@ a list with 2 data frames (data and metadata) when reading from REDCap. A data f
 }
 \description{
 the function allows import of data stored in database management systems (DBMS) including both relational and NoSQL databases. It also contains functions to import data from common file types such as csv, txt, xlsx, xml, json, etc.
+}
+\examples{
+data = readepi(credentials.file=system.file("extdata", "test.ini", package = "readepi"), project.id="Pats__Covid_19_Cohort_1_Screening")
 }

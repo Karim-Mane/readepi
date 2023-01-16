@@ -14,28 +14,35 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
+## Installation
+
+You can install the development version of readepi from
+[GitHub](https://github.com/) with:
+
+```{r}
+# install.packages("devtools")
+devtools::install_github("Karim-Mane/readepi")
 library(readepi)
 ```
 
 # Reading data from file or directory
 ## importing data from JSON file
 ```{r eval=FALSE}
-file = "/Users/karimmane/Documents/Karim/LSHTM/Data/test.json"
+file = system.file("extdata", "test.json", package = "readepi")
 data = readepi(file.path = file)
 ```
 
 ## importing data from excel file with 2 sheets
 here we are importing from the second excel sheet
 ```{r eval=FALSE}
-file = "/Users/karimmane/Documents/Karim/LSHTM/Data/For_correlation.xlsx"
+file = system.file("extdata", "test.xlsx", package = "readepi")
 data = readepi(file.path = file, which = "Sheet2")
 ```
 
 ## importing data from several files in a directory
 ```{r eval=FALSE}
 # reading all files in the given directory
-dir.path = "/Users/karimmane/Documents/Karim/LSHTM/Data"
+dir.path = "inst/extdata"
 data = readepi(file.path = dir.path)
 
 # reading only txt files
@@ -47,7 +54,9 @@ data = readepi(file.path = dir.path, pattern = "txt")
 ### importing from REDCap
 we were given access to the **Pats__Covid_19_Cohort_1_Screening**.    
 ```{r eval=FALSE}
-credentials.file = "/Users/karimmane/Documents/Karim/LSHTM/Data/.credentials_karim.ini"
+# credentials.file = "/Users/karimmane/Documents/Karim/LSHTM/Data/.credentials_karim.ini"
+# display the structure of the credentials file
+show_example_file()
 
 # reading all fields and records the project
 data = readepi(credentials.file, project.id="Pats__Covid_19_Cohort_1_Screening")
